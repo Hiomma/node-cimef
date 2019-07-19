@@ -14,14 +14,13 @@ module.exports = {
     async resolve(source, args, { req }) {
         if (await auth(req)) {
             return models.Produto.build({
-                titulo: args.produto.titulo,
-                manchete: args.produto.manchete,
-                texto: args.produto.texto,
+                nome: args.produto.nome,
+                tabela: args.produto.tabela,
                 imagem: args.produto.imagem,
                 ativado: args.produto.ativado,
-                posicao_id: args.produto.posicao_id,
                 categoria_id: args.produto.categoria_id,
-                url: args.produto.url
+                texto: args.produto.texto,
+                video: args.produto.video
             }).save().then(function (newProduto) {
                 return models.Produto.findByPk(newProduto.id);
             });
