@@ -31,7 +31,7 @@ module.exports = {
     },
     resolve(root, args) {
         const offset = args.offset || 0;
-        const limit = args.first || 10;
+        const limit = args.first || 100;
 
         if (args.filter) {
             let aux = args;

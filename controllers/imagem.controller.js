@@ -13,6 +13,7 @@ function imagemController() {
     router.route("/produto/principal/:id").post(uploadImagemPrincipalProduto);
     router.route("/produto/tabela/:id").post(uploadTabelaProduto);
     router.route("/produto/imagem/:id").post(uploadImagemProduto);
+    router.route("/depoimento/imagem/:id").post(uploadTabelaDepoimento);
 
     return router;
 
@@ -137,6 +138,31 @@ function imagemController() {
 
                         produto.tabela = aux.path.replace(/\\/g, "/");
                         return produto.update({ tabela: produto.tabela });
+                    });
+            }
+
+            return res.send(req.files);
+        }
+
+        return res.status(500).send('Houve erro no upload!');
+    }
+    /**
+     * @description Upload da foto da tabela da depoimento
+     */
+    async function uploadTabelaDepoimento(req, res) {
+        if (req.files.length > 0) {
+            await models.Depoimento.findByPk(req.params.id).then(data => {
+                if (data)
+                    fs.unlink(data.url, () => { })
+            })
+
+            for (let aux of req.files) {
+                await models.Depoimento
+                    .findByPk(req.params.id)
+                    .then((depoimento) => {
+
+                        depoimento.url = aux.path.replace(/\\/g, "/");
+                        return depoimento.update({ url: depoimento.url });
                     });
             }
 
