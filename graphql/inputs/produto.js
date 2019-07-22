@@ -12,8 +12,8 @@ module.exports = new GraphQLInputObjectType({
         nome: { type: GraphQLNonNull(GraphQLString) },
         texto: { type: GraphQLNonNull(GraphQLString) },
         imagem: { type: GraphQLNonNull(GraphQLString) },
-        video: { type: GraphQLNonNull(GraphQLString) },
-        tabela: { type: GraphQLNonNull(GraphQLString) },
+        video: { type: GraphQLString },
+        tabela: { type: GraphQLString },
         ativado: { type: GraphQLNonNull(GraphQLBoolean) },
         categoria_id: { type: GraphQLNonNull(GraphQLID) },
     })
