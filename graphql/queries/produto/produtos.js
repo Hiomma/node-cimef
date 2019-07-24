@@ -2,7 +2,8 @@ const {
     GraphQLList,
     GraphQLBoolean,
     GraphQLInt,
-    GraphQLString
+    GraphQLString,
+    GraphQLID
 } = require('graphql');
 
 const Sequelize = require('sequelize');
@@ -13,6 +14,10 @@ const Produto = require('../../types/produto.js');
 module.exports = {
     type: new GraphQLList(Produto),
     args: {
+        categoria_id: {
+            type: GraphQLID,
+            description: "ID da Categoria do produto"
+        },
         filter: {
             type: GraphQLString,
             description: "Filtre pelas palavras chaves do conteúdo da tabela!"
@@ -45,6 +50,7 @@ module.exports = {
             if (aux.ativado == true || aux.ativado == false) {
                 args.ativado = aux.ativado;
             }
+
         }
 
         delete args.offset;
