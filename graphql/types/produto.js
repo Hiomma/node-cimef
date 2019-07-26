@@ -70,7 +70,7 @@ module.exports = new GraphQLObjectType({
                 type: CategoriaProduto,
                 description: "Categoria dos Produtos",
                 resolve(produto) {
-                    console.log(produto)
+
                     return models.CategoriaProduto.findByPk(produto.categoria_id);
                 }
             },

@@ -17,7 +17,6 @@ function loginController() {
         models.Usuario.findOne({
             where: { email: req.body.email }
         }).then(async data => {
-            console.log(data.dataValues);
             if (!data) {
                 res.status(401).json({ message: "Login e senha errados!" })
             } else {

@@ -137,6 +137,7 @@ function imagemController() {
                     .then((produto) => {
 
                         produto.tabela = aux.path.replace(/\\/g, "/");
+                        console.log(produto.tabela)
                         return produto.update({ tabela: produto.tabela });
                     });
             }
