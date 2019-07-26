@@ -73,24 +73,31 @@ function imagemController() {
      * @description Upload das fotos da produto
      */
     async function uploadImagemProduto(req, res) {
-        if (req.files.length > 0) {
-            await models.ImagemProduto.findAll({ raw: true, where: { produto_id: req.params.id } }).then(data => {
-                console.log(data)
-                for (let aux of data) {
-                    fs.unlink(aux.url, () => { })
+        try {
+            console.log(req.files)
+            if (req.files.length > 0) {
+                console.log(2);
+                await models.ImagemProduto.findAll({ raw: true, where: { produto_id: req.params.id } }).then(data => {
+                    console.log(data)
+                    for (let aux of data) {
+                        fs.unlink(aux.url, () => { })
+                    }
+                })
+
+                await models.ImagemProduto.destroy({ where: { produto_id: req.params.id } });
+
+                for (let aux of req.files) {
+                    await models.ImagemProduto.build({
+                        url: aux.path.replace(/\\/g, "/"),
+                        produto_id: req.params.id
+                    }).save();
                 }
-            })
 
-            await models.ImagemProduto.destroy({ where: { produto_id: req.params.id } });
-
-            for (let aux of req.files) {
-                await models.ImagemProduto.build({
-                    url: aux.path.replace(/\\/g, "/"),
-                    produto_id: req.params.id
-                }).save();
+                return res.send(req.files);
             }
 
-            return res.send(req.files);
+        } catch (error) {
+            return res.status(500).send(error);
         }
 
         return res.status(500).send('Houve erro no upload!');
