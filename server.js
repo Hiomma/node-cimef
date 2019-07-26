@@ -21,7 +21,7 @@ app.use("/api", multer.array('image'), imagemController())
 app.use('/graphql',
     (req, res) => {
         express_graphql({
-            schema: Schema, pretty: true, graphiql: true,
+            schema: Schema, pretty: true, graphiql: false,
             context: { req }
         })(req, res)
     });
