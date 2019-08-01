@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     const Produtos = sequelize.define('Produto', {
         nome: DataTypes.STRING,
         imagem: DataTypes.STRING,
-        tabela: DataTypes.STRING,
         texto: DataTypes.TEXT,
         video: DataTypes.STRING,
         ativado: DataTypes.BOOLEAN

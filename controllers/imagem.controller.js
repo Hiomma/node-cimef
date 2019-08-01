@@ -74,11 +74,8 @@ function imagemController() {
      */
     async function uploadImagemProduto(req, res) {
         try {
-            console.log(req.files)
             if (req.files.length > 0) {
-                console.log(2);
                 await models.ImagemProduto.findAll({ raw: true, where: { produto_id: req.params.id } }).then(data => {
-                    console.log(data)
                     for (let aux of data) {
                         fs.unlink(aux.url, () => { })
                     }

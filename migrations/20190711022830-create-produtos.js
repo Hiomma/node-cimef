@@ -17,9 +17,6 @@ module.exports = {
             texto: {
                 type: Sequelize.TEXT
             },
-            tabela: {
-                type: Sequelize.STRING
-            },
             video: {
                 type: Sequelize.STRING
             },

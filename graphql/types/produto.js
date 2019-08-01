@@ -45,13 +45,6 @@ module.exports = new GraphQLObjectType({
                     return produto.texto;
                 }
             },
-            tabela: {
-                type: GraphQLString,
-                description: "URL da Tabela no servidor",
-                resolve(produto) {
-                    return produto.tabela;
-                }
-            },
             imagem: {
                 type: GraphQLString,
                 description: "URL da Imagem no servidor",
